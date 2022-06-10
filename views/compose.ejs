@@ -2,9 +2,9 @@
 <h1>Compose</h1>
 <form action="/compose" method="post">
     <h3>Title</h3>
-    <input type="text" name="newTitle">
+    <input class="form-control" type="text" name="newTitle">
     <h3>Post</h3>
-    <input type="textarea" name="newPost">
-    <button type="submit" name="button">Publish</button>
+    <textarea class="form-control" rows="5" name="newPost"></textarea><br>
+    <button class="btn btn-primary btn-lg" type="submit" name="button">Publish</button>
 </form>
 <%- include("./partials/footer"); -%>
