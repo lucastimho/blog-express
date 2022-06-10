@@ -29,8 +29,11 @@ app.get("/compose", function(req, res) {
   res.render(__dirname + "/views/compose.ejs");
 })
 app.post("/compose", function(req, res) {
-  console.log(req.body.newTitle);
-  console.log(req.body.newPost);
+  let post = {
+    title: req.body.newTitle,
+    content: req.body.newPost
+  }
+  console.log(post);
 })
 
 
