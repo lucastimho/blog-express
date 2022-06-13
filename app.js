@@ -26,12 +26,12 @@ app.get("/", function (req, res) {
 app.get("/posts/:title", function (req, res) {
   let requestedTitle = req.params.title;
   let match = 0;
-  posts.forEach(function (n) {
-    if (n.title === lodash.lowerCase(requestedTitle)) {
+  for (let i = 0; i < posts.length; i++) {
+    if (posts[i].title === lodash.lowerCase(requestedTitle)) {
       match++;
-      console.log(match);
+      let index = i;
     }
-  });
+  }
   if (match > 0) {
     console.log("Match found");
   }
