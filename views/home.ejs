@@ -3,6 +3,11 @@
 <%= homeContent; %>
 <% postList.forEach(function(n) { %>
     <h3><%=n.title; %></h3>
-    <p><%=n.content; %></p>
+    <% if (n.content.length > 100) { %>
+        <%= trunLength = n.content.length - 100; %>
+        <p><%= n.content.slice(0, trunLength) + "..."; %></p>
+    <% } else { %>
+        <p><%=n.content; %></p>
+    <% } %>
 <% }) %>
 <%- include('./partials/footer'); -%>
