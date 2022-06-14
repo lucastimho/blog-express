@@ -9,6 +9,6 @@
     <% } else { %>
         <p><%=n.content; %></p>
     <% } %>
-    <a href="">Read More</a>
+    <a href="/posts/<%= n.title; %>">Read More</a>
 <% }) %>
 <%- include('./partials/footer'); -%>
