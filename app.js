@@ -52,6 +52,7 @@ app.post("/compose", function (req, res) {
     content: req.body.newPost,
   };
   posts.push(post);
+  res.redirect("/");
 });
 
 app.listen(3000, function () {
