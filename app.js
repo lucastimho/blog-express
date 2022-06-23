@@ -46,7 +46,10 @@ app.get("/posts/:postId", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("post", {postList: post})
+      res.render("post", {
+        title: post.title,
+        content: post.content
+      })
     }
    })
 });
@@ -64,8 +67,11 @@ app.post("/compose", function (req, res) {
     title: req.body.newTitle,
     content: req.body.newContent
   })
-  post.save();
-  res.redirect("/");
+  post.save(function(err) {
+    if (!err) {
+      res.redirect("/");
+    }
+  });
 });
 
 app.listen(3000, function () {
