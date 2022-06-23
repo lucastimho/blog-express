@@ -2,6 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose")
 const ejs = require("ejs");
 const _ = require("lodash");
 
@@ -19,6 +20,15 @@ app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true})
+
+const postSchema = {
+  title: String,
+  content: String
+}
+
+const Post = mongoose.Model("Post", postSchema);
 
 app.get("/", function (req, res) {
   res.render("home", { homeContent: homeStartingContent, postList: posts });
@@ -47,11 +57,11 @@ app.get("/compose", function (req, res) {
   res.render(__dirname + "/views/compose.ejs");
 });
 app.post("/compose", function (req, res) {
-  let post = {
+  const post = new Post ({
     title: req.body.newTitle,
-    content: req.body.newPost,
-  };
-  posts.push(post);
+    content: req.body.newContent
+  })
+  post.save();
   res.redirect("/");
 });
 
